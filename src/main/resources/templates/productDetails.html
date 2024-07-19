@@ -1,10 +1,21 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
-  <meta charset="UTF-8">
-  <title>$Title$</title>
+    <meta charset="UTF-8">
+    <title>Detail Product</title>
+    <link href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
 </head>
 <body>
-$END$
+<div class="container mt-4">
+    <h1>Detail Product</h1>
+    <div class="card">
+        <div class="card-body">
+            <p><strong>Name:</strong> <span th:text="${product.getName()}"></span></p>
+            <p><strong>Category:</strong> <span th:text="${product.getCategory()}"></span></p>
+            <p><strong>Price:</strong> <span th:text="${product.getPrice()}"></span> €</p>
+            <a th:href="@{/products}" class="btn btn-primary">Retour List</a>
+        </div>
+    </div>
+</div>
 </body>
 </html>

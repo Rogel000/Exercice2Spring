@@ -10,9 +10,6 @@
     <h1>Home</h1>
     <nav class="nav">
         <a th:href="@{/products}" class="nav-link">Products List</a>
-        <div th:each="category : ${categories}">
-            <a th:href="@{/detail/category/{category}(category=${category})}" class="nav-link" th:text="${category}"></a>
-        </div>
     </nav>
 </div>
 </body>

@@ -31,30 +31,18 @@ public class ProductController {
         return "productList";
     }
 
-    @GetMapping("/detail/{id}")
-    public String productDetails(@PathVariable UUID id, Model model) {
+    @GetMapping("/product/{id}")
+    public String productDetails(@PathVariable("id") UUID id, Model model) {
         model.addAttribute("product", productService.getProductById(id));
         return "productDetails";
     }
 
-    @GetMapping("/detail/category/{category}")
-    public String productsByCategory(@PathVariable String category, Model model) {
-        model.addAttribute("products", productService.getProductsByCategory(category));
-        return "productList";
-    }
 
 
-    @GetMapping("/detail/price/{price}")
-    public String productsByPrice(@PathVariable double price, Model model) {
-        model.addAttribute("products", productService.getProductsByMaxPrice(price));
-        return "productList";
-    }
-
-
-    @GetMapping("/filter")
-    public String filterProducts(@RequestParam(value = "category", required = false) String category,
-                                 @RequestParam(value = "price", required = false) Double price, Model model) {
-
+    @GetMapping("/products/filter")
+    public String filterProducts(@RequestParam(value = "category", required = false, defaultValue = "") String category,
+                                 @RequestParam(value = "price", required = false, defaultValue = "0") Double price,
+                                 Model model) {
         model.addAttribute("products", productService.getFilteredProducts(price, category));
         return "productList";
     }

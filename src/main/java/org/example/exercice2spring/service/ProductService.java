@@ -70,11 +70,15 @@ public class ProductService {
 
 
     public List<Product> getFilteredProducts(Double maxPrice, String category) {
+        System.out.println(maxPrice + " " + category);
+
+        if (maxPrice == 0 && category == null) {
+            return products.values().stream().toList();
+        }
+
+
         return products.values().stream()
-                .filter(product -> product.getCategory().equals(category) && product.getPrice() <= maxPrice)
-                .toList();
+                .filter(product -> (maxPrice == 0 || product.getPrice()<=maxPrice) && (category.isEmpty() ||product.getCategory().equals(category)))
+                .collect(Collectors.toList());
     }
-
-
-
 }

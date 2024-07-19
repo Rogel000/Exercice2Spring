@@ -71,9 +71,8 @@ public class ProductService {
 
     public List<Product> getFilteredProducts(Double maxPrice, String category) {
         return products.values().stream()
-                .filter(product -> (maxPrice == null || product.getPrice() <= maxPrice))
-                .filter(product -> (category == null || product.getCategory().equals(category)))
-                .collect(Collectors.toList());
+                .filter(product -> product.getCategory().equals(category) && product.getPrice() <= maxPrice)
+                .toList();
     }
 
 
